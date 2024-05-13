@@ -1,0 +1,33 @@
+<h3><caption [ngStyle]="{'width':'500px'}">Listado de animales en predio</caption></h3>
+  <div class="form-outline mt-3">
+    <input
+          type="search"
+          [(ngModel)]="searchtext"
+          id="form1"
+          class="form-control mb-2"
+          placeholder="Search"
+          aria-label="search">
+    </div>
+  <table class="table table-hover caption-top">
+  <thead>
+    <tr>
+      <th scope="col" [ngStyle]="{'width':'20px'}">#</th>
+      <th scope="col" [ngStyle]="{'width':'100px'}">Fecha de atención</th>
+      <th scope="col" [ngStyle]="{'width':'120px'}">Diagnostico</th>
+      <th scope="col" [ngStyle]="{'width':'330px'}">Tratamiento</th>
+      <th scope="col" [ngStyle]="{'width':'120px'}">Veterinario</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let itm of ficha | paginate: { itemsPerPage: 5, currentPage: pagina } | filter:searchtext; let indice=index ">
+      <td>{{indice+1}}</td>
+      <td>{{itm.fechaAtencion}}</td>
+      <td>{{itm.diagnostico}}</td>
+      <td>{{itm.tratamiento}}</td>
+      <td>{{itm.veterinario}}</td>
+    </tr>
+  </tbody>
+</table>
+<div class="d-flex justify-content-center">
+  <pagination-controls (pageChange)="pagina = $event"></pagination-controls>
+</div>

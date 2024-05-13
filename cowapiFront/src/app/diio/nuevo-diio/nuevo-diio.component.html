@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-4 mx-auto">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label id="nroDiio">Diio</label>
+                    <input type="text" id="nroDiio" name="nroDiio" formControlName="nroDiio" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label id="descripcion">Descripcion</label>
+                    <input id="descripcion" type="text" formControlName="descripcion" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label id="nacimiento">Fecha nacimiento</label>
+                    <input id="nacimiento" type="text" formControlName="nacimiento" class="form-control"
+                    matInput [matDatepicker]="pickerBorn" placeholder="Fecha">
+                  <mat-datepicker-toggle matSuffix [for]="pickerBorn"></mat-datepicker-toggle>
+                  <mat-datepicker #pickerBorn></mat-datepicker>
+                </div>
+                <div class="form-group">
+                  <label id="instalacion">Fecha instalación</label>
+                  <input id="instalacion" type="text" formControlName="instalacion" class="form-control"
+                  matInput [matDatepicker]="picker" placeholder="Fecha">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </div><br>
+                <button class="btn btn-outline-success btn-block" type="submit">Guardar</button>
+            </form>
+        </div>
+    </div>
+</div>

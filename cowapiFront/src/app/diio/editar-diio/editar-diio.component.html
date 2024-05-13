@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="row mt-5">
+
+            <form  [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="nroDiio">Diio</label>
+                    <input type="text" class="form-control" formControlName="nroDiio"
+                    id="nroDiio"
+                    name="nroDiio"
+                    value=""
+                    required>
+                </div>
+                <div class="form-group">
+                    <label for="fechaVisita">Fecha de atención</label>
+                    <input type="text" class="form-control" formControlName="fechaVisita"
+                    id="fechaVisita"
+                    name="fechaVisita"
+                    required
+                    matInput [matDatepicker]="picker" placeholder="Fecha">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </div>
+                <div class="form-group">
+                  <label id="peso">Peso del animal</label>
+                  <input id="peso" type="text" class="form-control" formControlName="peso"
+                  id="peso"
+                  name="peso"
+                  required>
+                </div>
+                <div class="form-group">
+                  <label for="veterinario">Médico tratante</label>
+                  <input type="text" class="form-control" formControlName="veterinario"
+                  id="veterinario"
+                  name="veterinario"
+                  required>
+              </div><br>
+              <div class="form-group">
+                <label for="diagnostico">Diagnostico</label>
+                <input type="text" class="form-control" formControlName="diagnostico"
+                id="diagnostico"
+                name="diagnostico"
+                required>
+            </div>
+            <div class="form-group">
+              <label for="tratamiento">Indicaciones</label>
+              <input type="textarea" maxlength="100" class="form-control" formControlName="tratamiento"
+              id="tratamiento"
+              name="tratamiento"
+              required>
+          </div><br>
+              <button class="btn btn-outline-success btn-block" type="submit">Guardar</button>
+            </form>
+
+    </div>
+</div>

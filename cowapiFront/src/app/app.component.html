@@ -1,0 +1,22 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Menú</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/"><i class="far fa-list-alt"></i> Lista</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/nuevo"><i class="fas fa-plus-circle"></i> Crear Diio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/ficha/00.000.0000"><i class="fas fa-plus-circle"></i> Crear ficha</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<router-outlet></router-outlet>

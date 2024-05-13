@@ -1,0 +1,38 @@
+
+    <h3><caption [ngStyle]="{'width':'500px'}">Listado de animales en predio</caption></h3>
+    <div class="form-outline mt-3">
+    <input
+          type="search"
+          [(ngModel)]="searchtext"
+          id="form1"
+          class="form-control mb-2"
+          placeholder="Search"
+          aria-label="search">
+    </div>
+    <table class="table table-hover caption-top">
+    <thead>
+      <tr>
+        <th scope="col" [ngStyle]="{'width':'20px'}">#</th>
+        <th scope="col" [ngStyle]="{'width':'300px'}">Descripcion</th>
+        <th scope="col" [ngStyle]="{'width':'100px'}">Fecha nacimiento</th>
+        <th scope="col" [ngStyle]="{'width':'80px'}">Nro Diio</th>
+        <th scope="col" [ngStyle]="{'width':'100px'}">Ver</th>
+        <th scope="col" [ngStyle]="{'width':'80px'}">Atención</th>
+        <th scope="col" [ngStyle]="{'width':'80px'}">Borrar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let itm of aretes | paginate: { itemsPerPage: 5, currentPage: pagina } | filter:searchtext; let indice=index">
+        <td>{{indice+1}}</td>
+        <td>{{itm.desc}}</td>
+        <td>{{itm.fechaNacimiento}}</td>
+        <td>{{itm.nroDiio}}</td>
+        <td><button class="btn btn-primary" routerLink="/detalle/{{itm.id}}"><i class="far fa-eye"></i> Ver Ficha</button></td>
+        <td><button class="btn btn-success" routerLink="/ficha/{{itm.nroDiio}}"><i class="far fa-edit"></i> Salud</button></td>
+        <td><button class="btn btn-danger" (click)="borrar(itm.id)"><i class="far fa-trash-alt"></i> Borrar</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="d-flex justify-content-center">
+    <pagination-controls (pageChange)="pagina = $event"></pagination-controls>
+  </div>
