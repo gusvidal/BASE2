@@ -66,6 +66,7 @@ public class AtencionController {
         try{
             Diio diioFicha = (Diio) diioService.listarPorNroDiio(nroDiioFicha);
             ficha.setDiio(diioFicha);
+            ficha.setFechaAtencion(ficha.getFechaAtencion().substring(0,10));
             fichaService.save(ficha);
             diio = diioService.listarId(ficha.getDiio().getId());
             Log.info("Se ingresa registro: "  + diio.getNroDiio());
