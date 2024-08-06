@@ -3,6 +3,12 @@
 Proyecto para el manejo de fichas veterinarias destinado principalmente a animales de lecheria
 individualizados por un arete numerado, conocido como DIIO.
 
+El API contempla el uso de documentación swagger, contiene pruebas unitarias en capas de controlador
+persistencia y servicio.
+
+Se implementó una busqueda paginada, además de un endpoint para el envio de mail que usa un servidor 
+smtp de google. Para lo cual se debe configurar una contraseña de aplicación en la cuenta de google.
+
 Se utiliza una base de datos relacional Mysql, un api/rest desarrollado en java con el framework
 SpringBoot3 y la parte front desarrollada con angular 16.
 
