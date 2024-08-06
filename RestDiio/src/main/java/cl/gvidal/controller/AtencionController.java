@@ -12,6 +12,7 @@ import cl.gvidal.service.IFichaService;
 import cl.gvidal.strategydiio.CalcDosis;
 import cl.gvidal.strategydiio.Context;
 import cl.gvidal.strategydiio.DosisStrategy;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,7 @@ import java.util.List;
                 RequestMethod.PUT,
                 RequestMethod.DELETE
         })
+@Tag(name = "Ficha", description = "Endpoints para el control medico de animales")
 public class AtencionController {
 
     @Autowired
@@ -48,7 +50,27 @@ public class AtencionController {
         "diio" : {
         "id": 1
         }
+
+
+    {
+  "id": 0,
+  "fechaAtencion": "2024/06/02",
+  "diagnostico": "Parasitismo",
+  "tratamiento": "Licuamicina suspension inyectable por 5 dias  ",
+  "veterinario": "Jaime Filoza Barria",
+  "diio": {
+    "id": 1,
+    "nroDiio": "01.001.0001",
+    "fechaInstall": "2023/10/05",
+    "desc": "Vaca angus negro",
+    "fechaNacimiento": "2020/05/04",
+    "campo": {
+      "id": 1,
+      "rup": "0.1.06.2658",
+      "direccion": "Planchado los indios Km 1"
     }
+  }
+}
 */
     @PostMapping("/atencion")
     public ResponseEntity<?> saveCow(@RequestBody Ficha ficha, @RequestParam int peso){

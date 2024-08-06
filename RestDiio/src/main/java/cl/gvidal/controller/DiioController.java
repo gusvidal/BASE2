@@ -3,6 +3,12 @@ package cl.gvidal.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +30,7 @@ methods= {
     RequestMethod.PUT, 
     RequestMethod.DELETE
 })
+@Tag(name = "Diio", description = "Endpoints para el manejo de animales areteados")
 public class DiioController {
 
     @Autowired
@@ -147,5 +154,52 @@ public class DiioController {
     		Log.info("Error al consultar datos ... " + e.getMessage());
     		return new ResponseEntity<>("Sin existencias", HttpStatus.NOT_FOUND);
         }
+	}
+
+	@Operation(
+			summary = "Get a paginated Diio list",
+			description = "This method provide a paginated Diio list ")
+	@ApiResponses(
+			value = {
+					@ApiResponse(
+							responseCode = "200",
+							description = "Diio list found in the database, response the diio info",
+							content = {
+									@Content(
+											mediaType = "application/json",
+											schema = @Schema(implementation = Diio.class))}
+					),
+					@ApiResponse(
+							responseCode = "404",
+							description = "Diio list not found",
+							content = {@Content}
+					)
+			}
+	)
+	@GetMapping("/lista-page/{page}")
+	public ResponseEntity<?> getTodosPaginados(@PathVariable("page") int page) {
+		List<DiioDto> listaDto = new ArrayList<>();
+
+		try {
+			List<Diio> lista = service.listAllPage(page);
+			for(Diio diio : lista) {
+				//DiioDto diioDto = new DiioDto();
+				DiioDto diioDto = new DiioDto(
+						diio.getId(),
+						diio.getNroDiio(),
+						diio.getFechaInstall(),
+						diio.getDesc(),
+						diio.getFechaNacimiento(),
+						diio.getCampo().getId(),
+						diio.getCampo().getDireccion(),
+						diio.getCampo().getRup());
+				listaDto.add(diioDto);
+			}
+			return new ResponseEntity<List<DiioDto>>(listaDto, HttpStatus.OK);
+
+		} catch (Exception e) {
+			Log.info("Error al consultar datos ... " + e.getMessage());
+			return new ResponseEntity<>("Sin existencias", HttpStatus.NOT_FOUND);
+		}
 	}
 }

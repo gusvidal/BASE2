@@ -5,6 +5,9 @@ import cl.gvidal.model.Diio;
 
 public interface IDiioService {
     public List<Diio> listar();
+
+	public List<Diio> listAllPage(int page);
+
 	public Diio listarPorNroDiio(String nroDiio);
 
 	public Diio listarId(int id);

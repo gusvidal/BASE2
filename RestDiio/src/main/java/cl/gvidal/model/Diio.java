@@ -1,6 +1,7 @@
 package cl.gvidal.model;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 
 import java.util.Set;
 

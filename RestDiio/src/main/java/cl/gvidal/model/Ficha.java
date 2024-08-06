@@ -5,7 +5,7 @@ import lombok.*;
 
 @Entity
 @Table(name="FICHA")
-@Getter @Setter
+@Data
 @NoArgsConstructor @AllArgsConstructor
 @Builder
 public class Ficha {

@@ -3,8 +3,10 @@ package cl.gvidal.service;
 import java.util.List;
 import java.util.Optional;
 
-import cl.gvidal.model.Ficha;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import cl.gvidal.model.Diio;
@@ -16,9 +18,24 @@ public class DiioService implements IDiioService{
     @Autowired
     private DiioDao repository;
 
+    private static int REGISTROS_POR_PAGINA = 3;
+
     @Override
     public List<Diio> listar() {
     	return (List<Diio>) repository.findAll();
+    }
+
+
+    @Override
+    public List<Diio> listAllPage(int page) {
+        // Creo el paginador diioPage, con la pagina de inicio, la cantidad de registros por pagina y el orden de los registros.
+        Pageable diioPage = PageRequest.of(page,REGISTROS_POR_PAGINA, Sort.by("fechaInstall").descending());
+        List<Diio> orderList = repository.findAll(diioPage).getContent();
+        long totalElements = repository.findAll(diioPage).getTotalElements();
+        long totalPages = repository.findAll(diioPage).getTotalPages();
+        System.out.println("totalPages = " + totalPages);
+        System.out.println("totalElements = " + totalElements);
+        return orderList;
     }
 
     @Override

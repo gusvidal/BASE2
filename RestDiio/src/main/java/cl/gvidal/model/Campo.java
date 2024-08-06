@@ -10,8 +10,16 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Table(name = "CAMPO")
 public class Campo {
 
@@ -28,7 +36,7 @@ public class Campo {
 	
 	@OneToMany(mappedBy="campo", cascade = CascadeType.ALL)
 	private Set<Diio> diios;
-
+/*
 	public Campo(int id, String rup, String direccion) {
 		super();
 		this.id = id;
@@ -70,5 +78,5 @@ public class Campo {
 	}
 
 	
-	
+	*/
 }
